@@ -5,7 +5,9 @@
 #include <ESP8266WebServer.h>
 #include <WiFiManager.h>
 #include <EEPROM.h>
-#include "pwm.c"
+extern "C" {
+  #include "pwm.h"
+}
 
 #define PWM_CHANNELS 3
 const uint32_t period = 1024;
@@ -17,8 +19,8 @@ const uint32_t period = 1024;
 //define pins
 uint32 io_info[PWM_CHANNELS][3] = {
   // MUX, FUNC, PIN
-  {PERIPHS_IO_MUX_MTDI_U,  FUNC_GPIO12, 12},
   {PERIPHS_IO_MUX_MTCK_U,  FUNC_GPIO13, 13},
+  {PERIPHS_IO_MUX_MTDI_U,  FUNC_GPIO12, 12},
   {PERIPHS_IO_MUX_MTMS_U,  FUNC_GPIO14, 14},
   //{PERIPHS_IO_MUX_GPIO5_U, FUNC_GPIO5 ,  5},
 };
